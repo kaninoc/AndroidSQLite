@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "co.edu.unal.androidsqlite"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "co.edu.unal.androidsqlite"
