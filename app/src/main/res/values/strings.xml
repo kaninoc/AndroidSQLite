@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">AndroidSQLite</string>
+    <string name="app_name">Agenda_sql</string>
+    <string name="hint_nombre">Nombre:</string>
+    <string name="hint_telefono">Telefono:</string>
+    <string name="hint_correo_electronico">Correo electronico:</string>
+    <string name="hint_url">URL:</string>
+    <string name="hint_tipo">Razon Social:</string>
+    <string name="hint_productos">Productos:</string>
+    <string name="btn_guarda">Guardar registro</string>
+    <string name="menu_nuevo">Nuevo registro</string>
 </resources>
