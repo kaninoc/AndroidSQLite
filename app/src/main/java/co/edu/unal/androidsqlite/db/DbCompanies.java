@@ -2,9 +2,14 @@ package co.edu.unal.androidsqlite.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+import co.edu.unal.androidsqlite.entities.Companies;
 
 public class DbCompanies extends DbHelper {
 
@@ -37,6 +42,35 @@ public class DbCompanies extends DbHelper {
         }
 
         return id;
+    }
+
+    public ArrayList<Companies> viewCompanies(){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Companies> listCompanies = new ArrayList<>();
+        Companies company = null;
+        Cursor cursorCompanies = null;
+
+        cursorCompanies =db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
+
+        if (cursorCompanies.moveToFirst()){
+            do {
+                company = new Companies();
+                company.setId(cursorCompanies.getInt(0));
+                company.setName(cursorCompanies.getString(1));
+                company.setTelefono(cursorCompanies.getString(3));
+                company.setCorreo_electronico(cursorCompanies.getString(4));
+                /*company.setUrl(cursorCompanies.getString(2));
+
+                company.setCorreo_electronico(cursorCompanies.getString(4));
+                company.setTipo(cursorCompanies.getString(5));
+                company.setProductos(cursorCompanies.getString(6));*/
+                listCompanies.add(company);
+            }while (cursorCompanies.moveToNext());
+        }
+        cursorCompanies.close();
+        return listCompanies;
     }
 
 
