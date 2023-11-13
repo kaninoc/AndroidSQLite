@@ -3,21 +3,27 @@ package co.edu.unal.androidsqlite;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
-import co.edu.unal.androidsqlite.db.DbHelper;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+import co.edu.unal.androidsqlite.adapters.ListCompaniesAdapter;
+import co.edu.unal.androidsqlite.db.DbCompanies;
+import co.edu.unal.androidsqlite.entities.Companies;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btncrear;
+    //Button btncrear;
+
+    RecyclerView viewListCompanies;
+    ArrayList<Companies> listCompanies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btncrear =findViewById(R.id.btnCraer);
+        viewListCompanies = findViewById(R.id.listCompanies);
+        viewListCompanies.setLayoutManager(new LinearLayoutManager(this));
+        listCompanies = new ArrayList<>();
+
+
+        DbCompanies dbCompanies = new DbCompanies(MainActivity.this);
+
+        ListCompaniesAdapter adapter = new ListCompaniesAdapter(dbCompanies.viewCompanies());
+        viewListCompanies.setAdapter(adapter);
+        /*btncrear =findViewById(R.id.btnCraer);
 
         btncrear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Error al crear Agenda",Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
