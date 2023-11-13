@@ -58,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Actualizar la lista de empresas y el adaptador
+        DbCompanies dbCompanies = new DbCompanies(MainActivity.this);
+        ListCompaniesAdapter adapter = new ListCompaniesAdapter(dbCompanies.viewCompanies());
+        viewListCompanies.setAdapter(adapter);
+    }
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_principal, menu);
