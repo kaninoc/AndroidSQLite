@@ -59,8 +59,10 @@ public class DbCompanies extends DbHelper {
                 company = new Companies();
                 company.setId(cursorCompanies.getInt(0));
                 company.setName(cursorCompanies.getString(1));
-                /*company.setUrl(cursorCompanies.getString(2));
                 company.setTelefono(cursorCompanies.getString(3));
+                company.setCorreo_electronico(cursorCompanies.getString(4));
+                /*company.setUrl(cursorCompanies.getString(2));
+
                 company.setCorreo_electronico(cursorCompanies.getString(4));
                 company.setTipo(cursorCompanies.getString(5));
                 company.setProductos(cursorCompanies.getString(6));*/

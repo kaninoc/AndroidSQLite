@@ -30,8 +30,8 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
     @Override
     public void onBindViewHolder(@NonNull companyviewHolder holder, int position) {
         holder.viewName.setText(listCompanies.get(position).getName());
-        /*holder.viewTelephone.setText(listCompanies.get(position).getTelefono());
-        holder.viewMail.setText(listCompanies.get(position).getCorreo_electronico());*/
+        holder.viewTelephone.setText(listCompanies.get(position).getTelefono());
+        holder.viewMail.setText(listCompanies.get(position).getCorreo_electronico());
     }
 
     @Override
@@ -46,8 +46,8 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
             super(itemView);
 
             viewName = itemView.findViewById(R.id.viewName);
-            /*viewTelephone = itemView.findViewById(R.id.viewTelefono);
-            viewMail = itemView.findViewById(R.id.viewMail);*/
+            viewTelephone = itemView.findViewById(R.id.viewTelephone);
+            viewMail = itemView.findViewById(R.id.viewMail);
         }
     }
 }

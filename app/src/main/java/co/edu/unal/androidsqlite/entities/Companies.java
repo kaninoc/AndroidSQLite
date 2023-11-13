@@ -5,7 +5,7 @@ public class Companies {
     private int id;
     private String name;
 
-    /*private String telefono;
+    private String telefono;
 
     private String correo_electronico;
 
@@ -13,7 +13,7 @@ public class Companies {
 
     private String tipo;
 
-    private String productos;*/
+    private String productos;
 
 
     public int getId() {
@@ -32,7 +32,7 @@ public class Companies {
         this.name = name;
     }
 
-    /*public String getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -70,5 +70,5 @@ public class Companies {
 
     public void setProductos(String productos) {
         this.productos = productos;
-    }*/
+    }
 }
