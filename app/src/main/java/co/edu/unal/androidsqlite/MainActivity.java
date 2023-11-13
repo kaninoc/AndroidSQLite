@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
-import co.edu.unal.agenda_sql.db.DbHelper;
+import co.edu.unal.androidsqlite.db.DbHelper;
 
 public class MainActivity extends AppCompatActivity {
 

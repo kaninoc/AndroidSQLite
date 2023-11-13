@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.Agenda_sql" parent="Base.Theme.Agenda_sql" />
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Otros atributos del estilo -->
+    </style>
+
 </resources>
