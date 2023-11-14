@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -95,6 +96,36 @@ public class DbCompanies extends DbHelper {
         }
         cursorCompanies.close();
         return company;
+    }
+
+    public boolean editCompany(int id, String nombre, String url, String telefono,String correo_electronico,String tipo,String productos) {
+
+        boolean flag = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.execSQL(
+                    "UPDATE "+TABLE_NAME+
+                            " SET nombre = '"+nombre+"'," +
+                            "url = '"+url+"'," +
+                            "telefono = '"+telefono+"'," +
+                            "correo_electronico = '"+correo_electronico+"'," +
+                            "tipo = '"+tipo+"'," +
+                            "productos = '"+productos+
+                            "' WHERE id = '"+id+"'");
+
+            flag =true;
+
+        } catch (Exception ex) {
+            ex.toString();
+            Log.d("EtiquetaDeLog ", ex.toString());
+            flag =false;
+        } finally {
+            db.close();
+        }
+
+        return flag;
     }
 
 }
