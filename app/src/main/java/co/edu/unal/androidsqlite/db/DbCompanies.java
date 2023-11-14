@@ -73,5 +73,28 @@ public class DbCompanies extends DbHelper {
         return listCompanies;
     }
 
+    public Companies viewCompany(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Companies company = null;
+        Cursor cursorCompanies = null;
+
+        cursorCompanies =db.rawQuery("SELECT * FROM "+TABLE_NAME + " WHERE id = "+ id + " LIMIT 1",null);
+
+        if (cursorCompanies.moveToFirst()){
+                company = new Companies();
+                company.setId(cursorCompanies.getInt(0));
+                company.setName(cursorCompanies.getString(1));
+                company.setTelefono(cursorCompanies.getString(3));
+                company.setCorreo_electronico(cursorCompanies.getString(4));
+                company.setUrl(cursorCompanies.getString(2));
+                company.setTipo(cursorCompanies.getString(5));
+                company.setProductos(cursorCompanies.getString(6));
+
+        }
+        cursorCompanies.close();
+        return company;
+    }
 
 }

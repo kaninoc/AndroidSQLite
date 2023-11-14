@@ -1,5 +1,7 @@
 package co.edu.unal.androidsqlite.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import co.edu.unal.androidsqlite.R;
+import co.edu.unal.androidsqlite.ViewActivity;
 import co.edu.unal.androidsqlite.entities.Companies;
 
 public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdapter.companyviewHolder> {
@@ -32,6 +35,7 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
         holder.viewName.setText(listCompanies.get(position).getName());
         holder.viewTelephone.setText(listCompanies.get(position).getTelefono());
         holder.viewMail.setText(listCompanies.get(position).getCorreo_electronico());
+
     }
 
     @Override
@@ -48,6 +52,16 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
             viewName = itemView.findViewById(R.id.viewName);
             viewTelephone = itemView.findViewById(R.id.viewTelephone);
             viewMail = itemView.findViewById(R.id.viewMail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ViewActivity.class);
+                    intent.putExtra("ID",listCompanies.get(getAdapterPosition()).getId());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
