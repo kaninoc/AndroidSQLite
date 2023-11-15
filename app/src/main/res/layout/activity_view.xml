@@ -111,12 +111,37 @@
             android:text="@string/btn_guarda"
             android:textSize="18sp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatEdit"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".9"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deleteEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="30dp"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/botonVolver"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            android:layout_gravity="center_horizontal"
+            android:textSize="28dp"
+            android:layout_marginBottom="40dp"
+            android:text="Volver"/>
     </LinearLayout>
 </LinearLayout>
