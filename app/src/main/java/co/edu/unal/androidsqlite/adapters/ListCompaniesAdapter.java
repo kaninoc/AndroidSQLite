@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import co.edu.unal.androidsqlite.R;
 import co.edu.unal.androidsqlite.ViewActivity;
@@ -20,8 +22,12 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
 
     ArrayList<Companies> listCompanies;
 
+    ArrayList<Companies> completeList;
+
     public ListCompaniesAdapter(ArrayList<Companies> listCompanies){
         this.listCompanies = listCompanies;
+        completeList = new ArrayList<>();
+        completeList.addAll(listCompanies);
     }
     @NonNull
     @Override
@@ -36,6 +42,29 @@ public class ListCompaniesAdapter extends RecyclerView.Adapter<ListCompaniesAdap
         holder.viewTelephone.setText(listCompanies.get(position).getTelefono());
         holder.viewMail.setText(listCompanies.get(position).getCorreo_electronico());
 
+    }
+
+    public void filter(String search){
+        int size = search.length();
+
+        if (size == 0){
+            listCompanies.clear();
+            listCompanies.addAll(completeList);
+        }else{
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<Companies> collection = listCompanies.stream().filter(i -> i.getName().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
+                listCompanies.clear();
+                listCompanies.addAll(collection);
+            }else{
+                for (Companies company: completeList) {
+                    if(company.getName().toLowerCase().contains(search.toLowerCase())){
+                        listCompanies.add(company);
+                    }
+                }
+            }
+        }
+
+        notifyDataSetChanged();
     }
 
     @Override
