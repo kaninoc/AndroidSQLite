@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import co.edu.unal.androidsqlite.db.DbCompanies;
 import co.edu.unal.androidsqlite.entities.Companies;
 
@@ -18,9 +20,13 @@ public class EditActivity extends AppCompatActivity {
     EditText txtNombre,txtUrl,txtTelefono,txtCorreoElectronico,txtTipo,txtProductos;
     Button btnSave;
 
+    Button btnVolver;
+
     Companies company;
 
     int id = 0;
+    FloatingActionButton fabEdit;
+    FloatingActionButton fabDelete;
 
     boolean flag = false;
     @Override
@@ -38,7 +44,15 @@ public class EditActivity extends AppCompatActivity {
         txtTipo = findViewById(R.id.txtTipo);
         txtProductos = findViewById(R.id.txtProductos);
 
+        fabEdit = findViewById(R.id.floatEdit);
+        fabEdit.setVisibility(View.INVISIBLE);
+        fabDelete = findViewById(R.id.deleteEdit);
+        fabDelete.setVisibility(View.INVISIBLE);
+
         btnSave = findViewById(R.id.btnGuarda);
+
+        btnVolver = findViewById(R.id.botonVolver);
+        btnVolver.setVisibility(View.INVISIBLE);
 
         if (savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
