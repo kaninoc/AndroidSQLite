@@ -1,6 +1,7 @@
 package co.edu.unal.androidsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.content.Intent;
 import android.os.Bundle;
