@@ -128,4 +128,28 @@ public class DbCompanies extends DbHelper {
         return flag;
     }
 
+    public boolean deleteCompany(int id) {
+
+        boolean flag = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.execSQL(
+                    "DELETE FROM "+TABLE_NAME+
+                            " WHERE id = '"+id+"'");
+
+            flag =true;
+
+        } catch (Exception ex) {
+            ex.toString();
+            Log.d("EtiquetaDeLog ", ex.toString());
+            flag =false;
+        } finally {
+            db.close();
+        }
+
+        return flag;
+    }
+
 }
