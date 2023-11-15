@@ -7,5 +7,5 @@ android:background="?attr/colorPrimary"
 android:title="Tic Tac Toe"
 android:text="Tic Tac Toe"
 android:fontFamily="cursive"
-android:textSize="20sp"
-/>
+android:textSize="20sp" />
+
