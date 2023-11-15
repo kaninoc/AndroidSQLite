@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -73,5 +74,58 @@ public class DbCompanies extends DbHelper {
         return listCompanies;
     }
 
+    public Companies viewCompany(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Companies company = null;
+        Cursor cursorCompanies = null;
+
+        cursorCompanies =db.rawQuery("SELECT * FROM "+TABLE_NAME + " WHERE id = "+ id + " LIMIT 1",null);
+
+        if (cursorCompanies.moveToFirst()){
+                company = new Companies();
+                company.setId(cursorCompanies.getInt(0));
+                company.setName(cursorCompanies.getString(1));
+                company.setTelefono(cursorCompanies.getString(3));
+                company.setCorreo_electronico(cursorCompanies.getString(4));
+                company.setUrl(cursorCompanies.getString(2));
+                company.setTipo(cursorCompanies.getString(5));
+                company.setProductos(cursorCompanies.getString(6));
+
+        }
+        cursorCompanies.close();
+        return company;
+    }
+
+    public boolean editCompany(int id, String nombre, String url, String telefono,String correo_electronico,String tipo,String productos) {
+
+        boolean flag = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.execSQL(
+                    "UPDATE "+TABLE_NAME+
+                            " SET nombre = '"+nombre+"'," +
+                            "url = '"+url+"'," +
+                            "telefono = '"+telefono+"'," +
+                            "correo_electronico = '"+correo_electronico+"'," +
+                            "tipo = '"+tipo+"'," +
+                            "productos = '"+productos+
+                            "' WHERE id = '"+id+"'");
+
+            flag =true;
+
+        } catch (Exception ex) {
+            ex.toString();
+            Log.d("EtiquetaDeLog ", ex.toString());
+            flag =false;
+        } finally {
+            db.close();
+        }
+
+        return flag;
+    }
 
 }
