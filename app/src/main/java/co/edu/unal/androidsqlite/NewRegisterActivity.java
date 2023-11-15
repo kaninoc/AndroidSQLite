@@ -15,6 +15,8 @@ public class NewRegisterActivity extends AppCompatActivity {
 
     EditText txtNombre,txtUrl,txtTelefono,txtCorreoElectronico,txtTipo,txtProductos;
     Button addRegister;
+
+    Button botonVolver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class NewRegisterActivity extends AppCompatActivity {
         txtProductos = findViewById(R.id.txtProductos);
 
         addRegister = findViewById(R.id.btnGuarda);
+        botonVolver = findViewById(R.id.botonVolver);
 
         addRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,13 @@ public class NewRegisterActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(NewRegisterActivity.this,"Error en Agregar contacto",Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

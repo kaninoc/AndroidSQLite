@@ -3,6 +3,8 @@ package co.edu.unal.androidsqlite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -20,7 +22,11 @@ public class ViewActivity extends AppCompatActivity {
     EditText txtNombre,txtUrl,txtTelefono,txtCorreoElectronico,txtTipo,txtProductos;
     Button addSave;
 
+    Button botonVolver;
+
     FloatingActionButton fabEdit;
+
+    FloatingActionButton fabDelete;
     Companies company;
 
     int id = 0;
@@ -41,6 +47,9 @@ public class ViewActivity extends AppCompatActivity {
 
         addSave = findViewById(R.id.btnGuarda);
         fabEdit = findViewById(R.id.floatEdit);
+        fabDelete = findViewById(R.id.deleteEdit);
+
+        botonVolver = findViewById(R.id.botonVolver);
 
         if (savedInstanceState == null){
             Bundle extra = getIntent().getExtras();
@@ -82,5 +91,39 @@ public class ViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        fabDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewActivity.this);
+                builder.setMessage("Desea eleminar el registro ?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(dbCompanies.deleteCompany(id)){
+                                    listDelete();
+                                }
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+            }
+        });
+
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    private void listDelete(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }
